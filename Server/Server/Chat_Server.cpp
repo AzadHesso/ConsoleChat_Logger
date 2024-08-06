@@ -1,4 +1,4 @@
-#include "Chat_Server.h"
+п»ї#include "Chat_Server.h"
 #include <iostream>
 #include <string>
 #include "Database.h"
@@ -79,21 +79,21 @@ string Chat::registerUser() {
     Database database{};
     database.connectDatabase(db_host, db_user, db_password, db_name);
 
-    // Проверка существования логина
+    // РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ Р»РѕРіРёРЅР°
     if (database.checkLoginExists(login)) {
         outMessage = "registerUser:error:login_exists";
         database.disconnect();
         return outMessage;
     }
 
-    // Проверка существования имени
+    // РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ РёРјРµРЅРё
     if (database.checkNameExists(name)) {
         outMessage = "registerUser:error:name_exists";
         database.disconnect();
         return outMessage;
     }
 
-    // Регистрация пользователя
+    // Р РµРіРёСЃС‚СЂР°С†РёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     if (database.registerUser(login, name, password)) {
         std::cout << "A new user has registered: " << login << std::endl;
         outMessage = "registerUser:ok:" + name;
@@ -112,7 +112,7 @@ string Chat::addMessage() {
     to = _vectorFromMessage[2];
     text = _vectorFromMessage[3];
 
-    // Отладочное сообщение для проверки полученных данных
+    //РћС‚Р»Р°РґРѕС‡РЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РїСЂРѕРІРµСЂРєРё РїРѕР»СѓС‡РµРЅРЅС‹С… РґР°РЅРЅС‹С…
     //std::cout << "Received addMessage request with from: " << from << ", to: " << to << ", text: " << text << std::endl;
 
     if (from.empty()) {
